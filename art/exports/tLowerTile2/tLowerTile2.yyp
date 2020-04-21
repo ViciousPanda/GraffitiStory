@@ -1,0 +1,44 @@
+{
+    "id": "a15cc706-0dfc-6073-3cb5-9a50c5947166",
+    "modelName": "GMProject",
+    "mvc": "1.0",
+    "IsDnDProject": true,
+    "configs": [
+        
+    ],
+    "option_ecma": false,
+    "parentProject": {
+        "id": "64bafa8d-d265-94cc-1ee0-7e3d8044978b",
+        "modelName": "GMProjectParent",
+        "mvc": "1.0",
+        "alteredResources": [
+            
+        ],
+        "hiddenResources": [
+            
+        ],
+        "projectPath": "${base_project}"
+    },
+    "resources": [
+        {
+            "Key": "461a01bf-82e2-34a4-b05a-6d22fc056b8b",
+            "Value": {
+                "id": "6c0ed6c0-fb38-df51-0198-f555c19b993b",
+                "resourcePath": "sprites\\sprite_tLowerTile2\\sprite_tLowerTile2.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "0d55ff33-75e4-3138-7e70-d5ddb010d52a",
+            "Value": {
+                "id": "a17da91e-eb33-cb76-1808-f8c746e51757",
+                "resourcePath": "tilesets\\tileset_tLowerTile2\\tileset_tLowerTile2.yy",
+                "resourceType": "GMTileSet"
+            }
+        }
+    ],
+    "script_order": [
+        
+    ],
+    "tutorial": ""
+}

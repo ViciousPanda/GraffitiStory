@@ -1,5 +1,5 @@
 x = oPlayer.x+9;
-y = oPlayer.y+0;
+y = oPlayer.y-1;
 
 //let sprayg follow mouse or controller
 if (oPlayer.controller == 0)
@@ -29,7 +29,7 @@ if (mouse_check_button(mb_left) or gamepad_button_check(0,gp_shoulderrb)) and (f
 	audio_play_sound(snSpray,2,false)	
 	with (instance_create_layer(x,y,"Spray",oSpray))
 	{
-		speed = 20;
+		speed = 5;
 		direction = other.image_angle + random_range (-3,3);
 		image_angle = direction;
 	}

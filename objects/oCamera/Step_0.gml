@@ -5,6 +5,14 @@ if (instance_exists(follow))
 {
 	xTo = follow.x;
 	yTo = follow.y;
+	
+	if ((follow).object_index == oPDead)
+	{
+		x = xTo;
+		y = yTo;
+	}
+	
+	
 }
 
 //Update object position 1.25 for smooth movement

@@ -194,7 +194,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "128",
+            "value": "150",
             "varName": "chase_x",
             "varType": 0
         },
@@ -208,7 +208,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "150",
+            "value": "180",
             "varName": "getaway_x",
             "varType": 0
         },
@@ -239,6 +239,34 @@
             "value": "e_state.idle",
             "varName": "state",
             "varType": 0
+        },
+        {
+            "id": "dd983b3b-7e46-4fed-aabf-ae2fbe7f8b3d",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "True",
+            "varName": "afraidofheights",
+            "varType": 3
+        },
+        {
+            "id": "0134dad6-a62b-4e7e-b970-52ddcc032e3e",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "0",
+            "varName": "grounded",
+            "varType": 3
         }
     ],
     "solid": false,

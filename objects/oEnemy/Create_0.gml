@@ -3,6 +3,7 @@
 enum e_state
 {
 	idle,
-	chase
+	chase,
+	patrol
 }
-state = e_state.idle
+state = e_state.patrol

@@ -1,18 +1,18 @@
 //step event: check every tick
 
 #region //get player input
-
 if (hascontrol)
 {
 
 	//keycheck
 	key_left = keyboard_check(vk_left) or keyboard_check(ord("A"));
 	key_right = keyboard_check(vk_right) or keyboard_check(ord("D"));
-	key_jump = keyboard_check_pressed(vk_up) or keyboard_check_pressed(ord("W"));
-
+	key_up = keyboard_check(vk_up) or keyboard_check(ord("W"));
+	key_down = keyboard_check(vk_down) or keyboard_check(ord("S"));
+	key_jump = keyboard_check_pressed(vk_space);
 
 	//controller
-	if (key_left) or (key_right) or (key_jump)
+	if (key_left) or (key_right) or (key_up) or (key_down) or (key_jump)
 	{
 		controller = false;
 	}
@@ -23,6 +23,16 @@ if (hascontrol)
 	{
 		key_left = abs(min(gamepad_axis_value(0,gp_axislh),0));	
 		key_right = max(gamepad_axis_value(0,gp_axislh),0);	
+		if (gamepad_axis_value(0,gp_axislv) < -deadz) 
+		{
+			key_up = 1;
+			key_down = 0;
+		}
+		if (gamepad_axis_value(0,gp_axislv) > deadz) 
+		{
+			key_up = 0;
+			key_down = 1;
+		}
 		controller = true;
 	}
 
@@ -37,6 +47,8 @@ else
 {
 	key_left = 0;
 	key_right = 0;
+	key_up = 0;
+	key_down = 0;
 	key_jump =  0;
 }
 	
@@ -50,9 +62,39 @@ var move = key_right - key_left;
 hsp = move * walkspd;
 vsp = vsp + grv;
 
-if (place_meeting(x,y+1,oWall)) and (key_jump)
+
+//Jumping
+canjump = canjump - 1;
+if (canjump > 0) and (key_jump)
 {
 	vsp = -7;
+	canjump = 0;
+}
+
+//climbing
+if (key_up or key_down)
+{
+	if place_meeting(x,y,oLadder) ladder = true;
+}
+
+if (ladder)
+{
+	vsp = 0;
+	if (key_up) vsp = -4;
+	if (key_down) vsp = 3;
+	if !place_meeting(x,y,oLadder) ladder = false;
+	if (key_jump) ladder = false and vsp = -6;
+	
+	if place_meeting(x+3,y-1,oWall)
+	{
+		hsp = 1;
+	}
+	else
+	{
+		hsp = 0;
+	}
+	
+	
 }
 
 //horizontal collision
@@ -93,6 +135,7 @@ if (!place_meeting(x,y+1,oWall))
 }
 else
 {
+	canjump = 10;
 	if (sprite_index == sPlayerJ) //falling sound
 	{
 		audio_sound_pitch(snLanding1,choose(0.8,1.0,1.2)); //random pitch

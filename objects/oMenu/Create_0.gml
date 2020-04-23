@@ -24,4 +24,6 @@ menu[0] = "Quit";
 
 //one dimentional array is a simple way of know how many variables are held
 menu_items = array_length_1d(menu)
+
+menu_top = menu_y -((menu_itemheight *1.5) * menu_items);
 menu_cursor = 2;

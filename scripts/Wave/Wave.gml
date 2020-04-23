@@ -1,4 +1,8 @@
-//Wave(from, to, duration, offset)
+/// @desc Wave(from, to, duration, offset)
+/// @arg from
+/// @arg to
+/// @arg duration
+/// @arg offset
 
 // Returns a value that will wave back and forth between [from-to] over [duration] seconds
 // Examples

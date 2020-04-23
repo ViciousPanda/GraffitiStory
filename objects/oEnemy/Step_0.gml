@@ -5,6 +5,7 @@
 
 vsp = vsp + grv;
 
+
 //horizontal collision
 //sign returns 1 or -1 to binary
 if (place_meeting(x+hsp,y,oWall))
@@ -38,12 +39,14 @@ y = y + vsp;
 
 if (!place_meeting(x,y+1,oWall)) 
 {
+	grounded = false;
 	sprite_index = sEnemy1J;
 	image_speed = 0;
 	if (sign(vsp) > 0) image_index = 0; else image_index = 1;
 }
 else
 {
+	grounded = true;
 	if (sprite_index == sPlayerJ) //falling sound
 	{
 		audio_sound_pitch(snLanding1,choose(0.8,1.0,1.2)); //random pitch
@@ -78,12 +81,38 @@ switch (state)
 		if (distance_to_object(oPlayer) <chase_x) state = e_state.chase;
 	}
 	break;
+
+case e_state.patrol:
+	{
+		if (place_meeting(x+hsp,y,oWall))
+		{
+			hsp = -hsp;
+		}
+		if hsp == 0
+		{
+			hsp = walksp;	
+		}
+
+		//Don't walk of edges
+		if (grounded) and (afraidofheights) and (!place_meeting(x+hsp,y+1,oWall))
+		{
+			hsp = -hsp;
+		}
+		
+		if (distance_to_object(oPlayer) <chase_x) state = e_state.chase;
+		
+	}
+	break;
+
 	case e_state.chase:
 	{
-		dir = sign(oPlayer.x - x);
-		hsp = dir * 2;
-		if (distance_to_object(oPlayer) > getaway_x) state = e_state.idle;
-		if (daze <= 1) state = e_state.idle;
+		if instance_exists(oPlayer)
+		{		
+			dir = sign(oPlayer.x - x);
+			hsp = dir * 2;
+			if (distance_to_object(oPlayer) > getaway_x) state = e_state.patrol;
+			if (daze <= 1) state = e_state.idle;
+		}
 	}
 	break
 }

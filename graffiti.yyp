@@ -594,7 +594,7 @@
             "Key": "cc052d28-2e7b-4d5c-be51-33e07be4be2d",
             "Value": {
                 "id": "c47f8a30-7258-4f6c-8184-3a248f159a9c",
-                "resourcePath": "sprites\\sPClimb\\sPClimb.yy",
+                "resourcePath": "sprites\\sPlayerC\\sPlayerC.yy",
                 "resourceType": "GMSprite"
             }
         },

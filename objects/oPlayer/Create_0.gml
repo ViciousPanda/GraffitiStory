@@ -24,3 +24,6 @@ ladder = false;
 
 //controler deadzone
 deadz = 0.6
+
+//left_hand equiped
+left_hand = 0

@@ -2,7 +2,7 @@
     "id": "cc052d28-2e7b-4d5c-be51-33e07be4be2d",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "sPClimb",
+    "name": "sPlayerC",
     "For3D": false,
     "HTile": false,
     "VTile": false,

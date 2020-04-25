@@ -84,17 +84,15 @@ if (ladder)
 	if (key_down) vsp = 3;
 	if !place_meeting(x,y,oLadder) ladder = false;
 	if (key_jump) ladder = false and vsp = -6;
-	
+
 	if place_meeting(x+3,y-1,oWall)
 	{
 		hsp = 1;
-	}
+		}
 	else
 	{
 		hsp = 0;
 	}
-	
-	
 }
 
 //horizontal collision
@@ -127,35 +125,76 @@ y = y + vsp;
 
 #region //animation 
 
-if (!place_meeting(x,y+1,oWall)) 
+//climbing
+if (place_meeting(x,y,oLadder)) and (!place_meeting(x,y,oWall))
 {
-	sprite_index = sPlayerJ;
-	image_speed = 0;
-	if (sign(vsp) > 0) image_index = 0; else image_index = 1;
-}
+	if instance_exists(oLefthand)
+	{
+		instance_destroy(oLefthand);
+		left_hand = 1;
+	}
+
+	if instance_exists(oSprayG)
+	{
+		instance_destroy(oSprayG);
+		left_hand = 2;
+	}
+		instance_destroy(oRighthand);
+		image_speed = 0;
+		sprite_index = sPlayerC;	
+
+	if key_up == 1 or key_down == 1
+	{
+		image_speed = 1;
+	}
+	
 else
 {
-	canjump = 10;
-	if (sprite_index == sPlayerJ) //falling sound
+	if left_hand == 1 
 	{
-		audio_sound_pitch(snLanding1,choose(0.8,1.0,1.2)); //random pitch
-		audio_sound_pitch(snLanding2,choose(0.8,1.0,1.2));
-		audio_sound_pitch(snLanding3,choose(0.8,1.0,1.2));
-		audio_play_sound(choose(snLanding1,snLanding2,snLanding3),2,false);		
+		instance_create_layer(oPlayer.x,oPlayer.y,"Player",oLefthand);
+		left_hand = 0;
 	}
-	image_speed = 1;
-	if (hsp == 0)
+	if left_hand == 2 
 	{
-		sprite_index = sPlayer;
-		
-	}
-	else
-	{
-		sprite_index = sPlayerR;
-	}
+		instance_create_layer(oPlayer.x,oPlayer.y,"Spray",oSprayG);
+		left_hand = 0;
+	}	
+	instance_create_layer(oPlayer.x,oPlayer.y,"Player",oRighthand);
+}
+
+
+
+
+	if (!place_meeting(x,y+1,oWall))
+		{
+			sprite_index = sPlayerJ;
+			image_speed = 0;
+			if (sign(vsp) > 0) image_index = 0; else image_index = 1;
+		}
+		else
+		{
+			canjump = 10;
+			if (sprite_index == sPlayerJ) //falling sound
+			{
+				audio_sound_pitch(snLanding1,choose(0.8,1.0,1.2)); //random pitch
+				audio_sound_pitch(snLanding2,choose(0.8,1.0,1.2));
+				audio_sound_pitch(snLanding3,choose(0.8,1.0,1.2));
+				audio_play_sound(choose(snLanding1,snLanding2,snLanding3),2,false);		
+			}
+			image_speed = 1;
+			if (hsp == 0)
+			{
+				sprite_index = sPlayer;
+			}
+			else
+			{
+				sprite_index = sPlayerR;
+			}
+		}
 }
 
 // image_xscale -1 will mirror
-if (hsp != 0) then image_xscale = sign(hsp);
+if (!place_meeting(x,y,oLadder)) and (hsp != 0) then image_xscale = sign(hsp);
 
 #endregion

@@ -28,7 +28,7 @@ if (hascontrol)
 			key_up = 1;
 			key_down = 0;
 		}
-		if (gamepad_axis_value(0,gp_axislv) > deadz) 
+		if (gamepad_axis_value(0,gp_axislv) > deadz)
 		{
 			key_up = 0;
 			key_down = 1;
